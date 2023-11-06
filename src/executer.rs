@@ -72,7 +72,6 @@ pub fn exec(
                 "JAL target addr not 2 byte aligned."
             );
             register_file.pc = add_signed!(instruction_address, jimmediate);
-            return true;
         }
         Instruction::JALR(rdindex, rs1index, iimmediate) => {
             let rs1: RS1value = register_file.read(rs1index);
@@ -80,7 +79,6 @@ pub fn exec(
             assert!(target % 2 == 0, "JALR target addr not 4 byte aligned.");
             register_file.write(rdindex, register_file.pc);
             register_file.pc = target;
-            return true;
         }
         Instruction::BEQ(rs1index, rs2index, bimmediate) => {
             let rs1: RS1value = register_file.read(rs1index);
@@ -91,7 +89,6 @@ pub fn exec(
                     "Branch target addr not 4 byte aligned."
                 );
                 register_file.pc = add_signed!(instruction_address, bimmediate);
-                return true;
             }
         }
         Instruction::BNE(rs1index, rs2index, bimmediate) => {
@@ -103,7 +100,6 @@ pub fn exec(
                     "Branch target addr not 4 byte aligned."
                 );
                 register_file.pc = add_signed!(instruction_address, bimmediate);
-                return true;
             }
         }
         Instruction::BLT(rs1index, rs2index, bimmediate) => {
@@ -115,7 +111,6 @@ pub fn exec(
                     "Branch target addr not 4 byte aligned."
                 );
                 register_file.pc = add_signed!(instruction_address, bimmediate);
-                return true;
             }
         }
         Instruction::BGE(rs1index, rs2index, bimmediate) => {
@@ -139,7 +134,6 @@ pub fn exec(
                     "Branch target addr not 4 byte aligned."
                 );
                 register_file.pc = add_signed!(instruction_address, bimmediate);
-                return true;
             }
         }
         Instruction::BGEU(rs1index, rs2index, bimmediate) => {
@@ -151,7 +145,6 @@ pub fn exec(
                     "Branch target addr not 4 byte aligned."
                 );
                 register_file.pc = add_signed!(instruction_address, bimmediate);
-                return true;
             }
         }
         Instruction::LB(rdindex, rs1index, iimmediate) => {
