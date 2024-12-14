@@ -2,7 +2,7 @@
 
 ---
 <picture>
- <img alt="The TRIOPS logo. Showing a handdrawn triops, brown colored with black lining" src=".github/TRIOPS_logo.svg">
+ <img alt="The TRIOPS logo. Showing a handdrawn triops, brown colored with black lining" src=".github/triops_logo.svg">
 </picture>
 
 # TRIOPS
