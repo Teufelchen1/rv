@@ -6,15 +6,18 @@
 
 # TRIOPS
 A RISC-V emulator written in Rust. 🦀
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/triops_logo_dark.svg">
   <source media="(prefers-color-scheme: light)" srcset=".github/triops_logo_light.svg">
   <img alt="The TRIOPS logo. Showing a hand-drawn triops, brown colored with black lining (or white lining in dark mode)." src=".github/triops_logo_light.svg" width="50%" align="right">
 </picture>
 
+
 ### Features
 
-* Loads ELF and BIN files
+* RV32 Interger ISA - Implementing Multiplication and Compressed extention.
+* Loads ELF and BIN files.
 * Comes with an easy to use and pretty looking TUI - which is powered by [Ratatui](https://github.com/ratatui/ratatui).
 * Single step or autostep through the executable.
 * A minimal, simple and bare metal C project is in `test_app/` included. Build it, run it in the emulator, tinker with it and repeat!
