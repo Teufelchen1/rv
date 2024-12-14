@@ -1,15 +1,16 @@
-<p float="left">
-[![Clippy & co](https://github.com/Teufelchen1/rv/actions/workflows/rust.yml/badge.svg)](https://github.com/Teufelchen1/rv/actions/workflows/rust.yml)
-<picture>
- <img alt="The TRIOPS logo. Showing a hand-drawn triops, brown colored with black lining (or white lining in dark mode)." src=".github/rustacean-flat-happy.svg">
-</picture>
-</p>
+<picture><img alt="The TRIOPS logo. Showing a hand-drawn triops, brown colored with black lining (or white lining in dark mode)." src=".github/rustacean-flat-happy.svg" height="50em" align="right"></picture>
+
+[![Clippy & co](https://github.com/Teufelchen1/rv/actions/workflows/rust.yml/badge.svg)](https://github.com/Teufelchen1/rv/actions/workflows/rust.yml) 
+
 ---
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/triops_logo_dark.svg">
   <source media="(prefers-color-scheme: light)" srcset=".github/triops_logo_light.svg">
-  <img alt="The TRIOPS logo. Showing a hand-drawn triops, brown colored with black lining (or white lining in dark mode)." src=".github/triops_logo_light.svg">
+  <img alt="The TRIOPS logo. Showing a hand-drawn triops, brown colored with black lining (or white lining in dark mode)." src=".github/triops_logo_light.svg" width="60%" align="right">
 </picture>
+
+
 
 # TRIOPS
 A RISC-V emulator written in Rust. 🦀
@@ -29,9 +30,9 @@ The purpose of this emulator is to teach me Rust and further deepen my love to R
 
 ## Thanks
 
-[Einhornwolle](https://github.com/einhornwolle) for drawing this awesome logo.
-[EdJoPaTo](https://github.com/edjopato) for so much Rust feedback.
-[Kosmas12](https://github.com/kosmas12) for implementing the Multiplication extension.
-[Chrysn](https://github.com/chrysn) for responding to every single Rust-cry, I tooted on Mastodon.
+* [Einhornwolle](https://github.com/einhornwolle) for drawing this awesome logo.
+* [EdJoPaTo](https://github.com/edjopato) for so much Rust feedback.
+* [Kosmas12](https://github.com/kosmas12) for implementing the Multiplication extension.
+* [Chrysn](https://github.com/chrysn) for responding to every single Rust-cry, I tooted on Mastodon.
 
 
