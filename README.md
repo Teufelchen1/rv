@@ -4,18 +4,15 @@
 
 ---
 
+# TRIOPS
+A RISC-V emulator written in Rust. 🦀
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/triops_logo_dark.svg">
   <source media="(prefers-color-scheme: light)" srcset=".github/triops_logo_light.svg">
-  <img alt="The TRIOPS logo. Showing a hand-drawn triops, brown colored with black lining (or white lining in dark mode)." src=".github/triops_logo_light.svg" width="60%" align="right">
+  <img alt="The TRIOPS logo. Showing a hand-drawn triops, brown colored with black lining (or white lining in dark mode)." src=".github/triops_logo_light.svg" width="50%" align="right">
 </picture>
 
-
-
-# TRIOPS
-A RISC-V emulator written in Rust. 🦀
-
-## Features
+### Features
 
 * Loads ELF and BIN files
 * Comes with an easy to use and pretty looking TUI - which is powered by [Ratatui](https://github.com/ratatui/ratatui).
