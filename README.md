@@ -17,7 +17,7 @@ Triops is a genus of small c**rust**aceans. They have three eyes 👀, live up t
 
 ### Features
 
-* RV32 Integer ISA - Implementing Multiplication and Compressed extention.
+* RV32IMC Integer ISA - Implementing Multiplication and Compressed extension.
 * Loads ELF and BIN files.
 * Comes with an easy to use and pretty looking TUI - which is powered by [Ratatui](https://github.com/ratatui/ratatui).
 * Single step or autostep through the executable.
