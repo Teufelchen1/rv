@@ -45,8 +45,7 @@ For the `test_app`, which is in C: `riscv64-elf-gcc` and `riscv64-elf-objcopy`.
 1. `cd ..` back into the root directory.
 2. `cargo run -- test_app/test.elf`
 
-<video src='https://github.com/user-attachments/assets/a10fa12a-6dbd-457a-b2f7-82bdbff8e24f' width="100%"/></video>
-
+<video src='https://github.com/user-attachments/assets/0df8c42a-7468-4328-a70f-c0e969232ef2' width="100%"/></video>
 
 
 
