@@ -13,6 +13,7 @@ A RISC-V emulator written in Rust. 🦀
   <img alt="The TRIOPS logo. Showing a hand-drawn triops, brown colored with black lining (or white lining in dark mode)." src=".github/triops_logo_light.svg" width="50%" align="right">
 </picture>
 
+Triops is a genus of small c**rust**aceans. They have three eyes 👀, live up to 90 days and their eggs can stay dormant for years.
 
 ### Features
 
