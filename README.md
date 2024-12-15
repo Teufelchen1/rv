@@ -16,7 +16,7 @@ A RISC-V emulator written in Rust. 🦀
 
 ### Features
 
-* RV32 Interger ISA - Implementing Multiplication and Compressed extention.
+* RV32 Integer ISA - Implementing Multiplication and Compressed extention.
 * Loads ELF and BIN files.
 * Comes with an easy to use and pretty looking TUI - which is powered by [Ratatui](https://github.com/ratatui/ratatui).
 * Single step or autostep through the executable.
