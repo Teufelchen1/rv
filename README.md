@@ -45,7 +45,7 @@ For the `test_app`, which is in C: `riscv64-elf-gcc` and `riscv64-elf-objcopy`.
 1. `cd ..` back into the root directory.
 2. `cargo run -- test_app/test.elf`
 
-<video src='.github/hello_world.mp4' width="100%"/>
+<video src='.github/hello_world.mp4' width="100%"/></video>
 
 ## Goal
 
