@@ -25,6 +25,28 @@ Triops is a genus of small c**rust**aceans. They have three eyes 👀, live up t
 * Interact with the running executable via an UART - emulating the peripheral of the [Hifive1b](https://www.sifive.com/boards/hifive1-rev-b).
 * Can also run without the TUI, attaching the UART directly to stdio.
 
+## Requierments
+On the Rust side, handled by cargo: `clap`, `anyhow`, `ratatui`, `crossterm`, `elf`.
+
+For the `test_app`, which is in C: `riscv64-elf-gcc` and `riscv64-elf-objcopy`.
+
+## Usage
+#### Ready the emulator:
+1. Clone the repository and `cd` into it.
+2. Build it: `cargo build`
+3. Test it: `cargo run -- --help`
+
+#### Ready a RISC-V elf binary:
+1. Enter the test application: `cd test_app/`
+2. Build it: `./build.sh`
+3. Results in `test.elf` and `test.bin`
+
+#### Run the emulator:
+1. `cd ..` back into the root directory.
+2. `cargo run -- test_app/test.elf`
+
+<video src='.github/hello_world.mp4' width="100%"/>
+
 ## Goal
 
 The purpose of this emulator is to teach me Rust and further deepen my love to RISC-V.
