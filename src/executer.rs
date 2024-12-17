@@ -432,6 +432,50 @@ pub fn exec(
                 register_file.write(rdindex, rs1 % rs2);
             }
         }
-        _ => todo!(),
+        Instruction::LRW(rdindex, rs1index) => {
+            todo!()
+        }
+        Instruction::SCW(rdindex, rs1index, rs2index) => {
+            todo!()
+        }
+        Instruction::AMOSWAPW(rdindex, rs1index, rs2index) => {
+            todo!()
+        }
+        Instruction::AMOADDW(rdindex, rs1index, rs2index) => {
+            todo!()
+        }
+        Instruction::AMOXORW(rdindex, rs1index, rs2index) => {
+            todo!()
+        }
+        Instruction::AMOANDW(rdindex, rs1index, rs2index) => {
+            let addr_rs1: RS1value = register_file.read(rs1index);
+            let org: RS2value = register_file.read(rs2index);
+            let data = memory.read_word(addr_rs1 as usize);
+            register_file.write(rdindex, data);
+            let result = data & org;
+            memory.write_word(addr_rs1 as usize, result);
+
+        }
+        Instruction::AMOORW(rdindex, rs1index, rs2index) => {
+            let addr_rs1: RS1value = register_file.read(rs1index);
+            let org: RS2value = register_file.read(rs2index);
+            let data = memory.read_word(addr_rs1 as usize);
+            register_file.write(rdindex, data);
+            let result = data | org;
+            memory.write_word(addr_rs1 as usize, result);
+        }
+        Instruction::AMOMINW(rdindex, rs1index, rs2index) => {
+            todo!()
+        }
+        Instruction::AMOMAXW(rdindex, rs1index, rs2index) => {
+            todo!()
+        }
+        Instruction::AMOMINUW(rdindex, rs1index, rs2index) => {
+            todo!()
+        }
+        Instruction::AMOMAXUW(rdindex, rs1index, rs2index) => {
+            todo!()
+        }
+        _ => todo!("{:?}", actual_instruction),
     }
 }

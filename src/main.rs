@@ -108,7 +108,13 @@ fn main() {
         }
     };
 
+    let mut count = 0;
     loop {
+        println!("{:0>10}| {:0>10X}", count, cpu.register.pc);
+        if cpu.register.pc >= 0x20010C0A && cpu.register.pc <= 0x20010C1A {
+            println!("{:0>8X}, 12({:0>8X})", cpu.register.read(0x0B), cpu.register.read(0x0A));
+            println!("{:0>8X}, 14({:0>8X})", cpu.register.read(0x0C), cpu.register.read(0x0A));
+        }
         let ok = match cpu.step() {
             Ok(ok) => ok,
             Err(err) => panic!(
@@ -122,6 +128,7 @@ fn main() {
         if !ok {
             break;
         }
+        count += 1;
     }
 
     if args.testing {

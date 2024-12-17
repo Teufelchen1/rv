@@ -50,6 +50,7 @@ impl<B> Uart<B> {
 impl<B: Backend> MmapPeripheral for Uart<B> {
     #[allow(clippy::match_same_arms)]
     fn read(&self, address_offset: usize) -> u8 {
+        println!("{:0>2X}", address_offset);
         match address_offset {
             0x00..=0x02 => 0, // txdata Transmit data register
             0x03 => {
@@ -180,7 +181,8 @@ impl<B: Backend> MmapPeripheral for Uart<B> {
                 self.rxwm_ie = (value & 0b10) != 0;
             }
             0x11..=0x17 => (),
-            0x18 => todo!(), // div Baud rate divisor
+            0x18 => (), // div Baud rate divisor
+            0x19..=0x1C => (), // ????
             _ => panic!("UART write-access out of bounds: {address_offset:}"),
         }
     }
