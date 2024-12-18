@@ -103,7 +103,7 @@ impl CSR {
                 panic!("Attempt to write to read-only CSR!");
             }
             0x300 => {
-                println!("Ingoring write of {value:X} into mstatus");
+                //println!("Ingoring write of {value:X} into mstatus");
                 self.mstatus = 0;
             }
             0x301 => {
@@ -119,7 +119,7 @@ impl CSR {
                 self.mideleg = 0;
             }
             0x304 => {
-                println!("Ingoring write of {value:X} into mie");
+                //println!("Ingoring write of {value:X} into mie");
                 self.mie = 0;
             }
             0x305 => {
@@ -129,6 +129,7 @@ impl CSR {
                         "mtvec value not 4-byte aligned or mode other than Direct selected"
                     );
                 }
+                //println!("Wrote {:x} into mtvec", value);
                 self.mtvec = value;
             }
             0x306 => {

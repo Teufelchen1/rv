@@ -53,37 +53,38 @@ impl<'trait_periph> Memory<'trait_periph> {
         if self.is_uart(addr) {
             return u32::from(self.uart.read(addr - self.uart_base));
         }
-        if addr <= 0xFF && addr >= 0x00  {
+        if addr <= 0xFF && addr >= 0x00 {
+            panic!();
             println!("read ???");
             return 0;
         }
 
         // PRCI
-        if addr <= 0x1000_8FFF && addr >= 0x1000_8000  {
-            if (addr - 0x1000_8000) == 0x00 {
-                println!("hfrosccfg");
-            }
-            if (addr - 0x1000_8000) == 0x04 {
-                println!("hfxosccfg");
-            }
-            if (addr - 0x1000_8000) == 0x08 {
-                println!("pllcfg");
-            }
-            if (addr - 0x1000_8000) == 0x0C {
-                println!("plloutdiv");
-            }
-            if (addr - 0x1000_8000) == 0xF0 {
-                println!("procmoncfg");
-            }
+        if addr <= 0x1000_8FFF && addr >= 0x1000_8000 {
+            // if (addr - 0x1000_8000) == 0x00 {
+            //     println!("hfrosccfg");
+            // }
+            // if (addr - 0x1000_8000) == 0x04 {
+            //     println!("hfxosccfg");
+            // }
+            // if (addr - 0x1000_8000) == 0x08 {
+            //     println!("pllcfg");
+            // }
+            // if (addr - 0x1000_8000) == 0x0C {
+            //     println!("plloutdiv");
+            // }
+            // if (addr - 0x1000_8000) == 0xF0 {
+            //     println!("procmoncfg");
+            // }
 
             return 0xFF;
         }
         // PLIC
-        if addr <= 0x0FFF_FFFF && addr >= 0x0C00_0000  {
+        if addr <= 0x0FFF_FFFF && addr >= 0x0C00_0000 {
             return 0xFF;
         }
         // GPIO
-        if addr <= 0x1001_2FFF && addr >= 0x1001_2000  {
+        if addr <= 0x1001_2FFF && addr >= 0x1001_2000 {
             return 0xFF;
         }
         panic!("Memory read outside memory map: 0x{addr:X}");
@@ -103,42 +104,44 @@ impl<'trait_periph> Memory<'trait_periph> {
         if self.is_uart(addr) {
             return self.uart.write(addr - self.uart_base, (value & 0xFF) as u8);
         }
-        if addr <= 0xFF && addr >= 0x00  {
+        if addr <= 0xFF && addr >= 0x00 {
+            panic!();
             println!("write ???");
             return;
         }
-        if addr == 0xFFFF_FFFF  {
+        if addr == 0xFFFF_FFFF {
+            panic!();
             println!("write ???");
             return;
         }
         // PRCI
-        if addr <= 0x1000800F && addr >= 0x10008000  {
-            println!("PRCI write");
-            if (addr - 0x1000_8000) == 0x00 {
-                println!("hfrosccfg");
-            }
-            if (addr - 0x1000_8000) == 0x04 {
-                println!("hfxosccfg");
-            }
-            if (addr - 0x1000_8000) == 0x08 {
-                println!("pllcfg");
-            }
-            if (addr - 0x1000_8000) == 0x0C {
-                println!("plloutdiv");
-            }
-            if (addr - 0x1000_8000) == 0xF0 {
-                println!("procmoncfg");
-            }
+        if addr <= 0x1000800F && addr >= 0x10008000 {
+            // println!("PRCI write");
+            // if (addr - 0x1000_8000) == 0x00 {
+            //     println!("hfrosccfg");
+            // }
+            // if (addr - 0x1000_8000) == 0x04 {
+            //     println!("hfxosccfg");
+            // }
+            // if (addr - 0x1000_8000) == 0x08 {
+            //     println!("pllcfg");
+            // }
+            // if (addr - 0x1000_8000) == 0x0C {
+            //     println!("plloutdiv");
+            // }
+            // if (addr - 0x1000_8000) == 0xF0 {
+            //     println!("procmoncfg");
+            // }
             return;
         }
         // PLIC
-        if addr <= 0x0FFF_FFFF && addr >= 0x0C00_0000  {
-            println!("PLIC write");
+        if addr <= 0x0FFF_FFFF && addr >= 0x0C00_0000 {
+            //println!("PLIC write");
             return;
         }
         // GPIO
-        if addr <= 0x1001_2FFF && addr >= 0x1001_2000  {
-            println!("GPIO write");
+        if addr <= 0x1001_2FFF && addr >= 0x1001_2000 {
+            //println!("GPIO write");
             return;
         }
         panic!("Memory write outside writable memory map: 0x{addr:X}");

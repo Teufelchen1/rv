@@ -249,7 +249,7 @@ pub fn decode(instruction: u32) -> Result<Instruction, &'static str> {
                 0b11100 => Ok(Instruction::AMOMAXUW(rd, rs1, rs2)),
                 _ => Err("Invalid funct5 AMO-Type"),
             }
-        },
+        }
         OpCode::OP => {
             /* All OP are R-Type instructions */
             let rd_index: RDindex = rd(instruction);
@@ -371,6 +371,7 @@ pub fn decode(instruction: u32) -> Result<Instruction, &'static str> {
                     0b0000_0000_0000 => Ok(Instruction::ECALL()),
                     0b0000_0000_0001 => Ok(Instruction::EBREAK()),
                     0b0011_0000_0010 => Ok(Instruction::MRET()),
+                    0b0001_0000_0101 => Ok(Instruction::WFI()),
                     _ => Err("Invalid SYSTEM instruction immediate"),
                 },
                 0b001 => Ok(Instruction::CSRRW(rd_index, rs1, sys_imm)),

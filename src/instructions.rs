@@ -123,6 +123,8 @@ pub enum Instruction {
     CFSDSP(RS2index, Immediate),
     CSWSP(RS2index, Immediate),
     CFSWSP(RS2index, Immediate),
+    /* Priv */
+    WFI(),
 }
 
 pub fn decompress(inst: &Instruction) -> Instruction {
@@ -567,17 +569,71 @@ impl Instruction {
                 index_to_name(rs1index),
                 index_to_name(rs2index)
             ),
-            Instruction::LRW(rdindex, rs1index) => format!("lrw {:}, {:}", index_to_name(rdindex), index_to_name(rs1index)),
-            Instruction::SCW(rdindex, rs1index, rs2index) => format!("scw {:}, {:}, {:}", index_to_name(rdindex), index_to_name(rs1index), index_to_name(rs2index)),
-            Instruction::AMOSWAPW(rdindex, rs1index, rs2index) => format!("amoswapw {:}, {:}, {:}", index_to_name(rdindex), index_to_name(rs1index), index_to_name(rs2index)),
-            Instruction::AMOADDW(rdindex, rs1index, rs2index) => format!("amoaddw {:}, {:}, {:}", index_to_name(rdindex), index_to_name(rs1index), index_to_name(rs2index)),
-            Instruction::AMOXORW(rdindex, rs1index, rs2index) => format!("amoxorw {:}, {:}, {:}", index_to_name(rdindex), index_to_name(rs1index), index_to_name(rs2index)),
-            Instruction::AMOANDW(rdindex, rs1index, rs2index) => format!("amoandw {:}, {:}, {:}", index_to_name(rdindex), index_to_name(rs1index), index_to_name(rs2index)),
-            Instruction::AMOORW(rdindex, rs1index, rs2index) => format!("amoorw {:}, {:}, {:}", index_to_name(rdindex), index_to_name(rs1index), index_to_name(rs2index)),
-            Instruction::AMOMINW(rdindex, rs1index, rs2index) => format!("amominw {:}, {:}, {:}", index_to_name(rdindex), index_to_name(rs1index), index_to_name(rs2index)),
-            Instruction::AMOMAXW(rdindex, rs1index, rs2index) => format!("amomaxw {:}, {:}, {:}", index_to_name(rdindex), index_to_name(rs1index), index_to_name(rs2index)),
-            Instruction::AMOMINUW(rdindex, rs1index, rs2index) => format!("amominuw {:}, {:}, {:}", index_to_name(rdindex), index_to_name(rs1index), index_to_name(rs2index)),
-            Instruction::AMOMAXUW(rdindex, rs1index, rs2index) => format!("amomaxuw {:}, {:}, {:}", index_to_name(rdindex), index_to_name(rs1index), index_to_name(rs2index)),
+            Instruction::LRW(rdindex, rs1index) => format!(
+                "lrw {:}, {:}",
+                index_to_name(rdindex),
+                index_to_name(rs1index)
+            ),
+            Instruction::SCW(rdindex, rs1index, rs2index) => format!(
+                "scw {:}, {:}, {:}",
+                index_to_name(rdindex),
+                index_to_name(rs1index),
+                index_to_name(rs2index)
+            ),
+            Instruction::AMOSWAPW(rdindex, rs1index, rs2index) => format!(
+                "amoswapw {:}, {:}, {:}",
+                index_to_name(rdindex),
+                index_to_name(rs1index),
+                index_to_name(rs2index)
+            ),
+            Instruction::AMOADDW(rdindex, rs1index, rs2index) => format!(
+                "amoaddw {:}, {:}, {:}",
+                index_to_name(rdindex),
+                index_to_name(rs1index),
+                index_to_name(rs2index)
+            ),
+            Instruction::AMOXORW(rdindex, rs1index, rs2index) => format!(
+                "amoxorw {:}, {:}, {:}",
+                index_to_name(rdindex),
+                index_to_name(rs1index),
+                index_to_name(rs2index)
+            ),
+            Instruction::AMOANDW(rdindex, rs1index, rs2index) => format!(
+                "amoandw {:}, {:}, {:}",
+                index_to_name(rdindex),
+                index_to_name(rs1index),
+                index_to_name(rs2index)
+            ),
+            Instruction::AMOORW(rdindex, rs1index, rs2index) => format!(
+                "amoorw {:}, {:}, {:}",
+                index_to_name(rdindex),
+                index_to_name(rs1index),
+                index_to_name(rs2index)
+            ),
+            Instruction::AMOMINW(rdindex, rs1index, rs2index) => format!(
+                "amominw {:}, {:}, {:}",
+                index_to_name(rdindex),
+                index_to_name(rs1index),
+                index_to_name(rs2index)
+            ),
+            Instruction::AMOMAXW(rdindex, rs1index, rs2index) => format!(
+                "amomaxw {:}, {:}, {:}",
+                index_to_name(rdindex),
+                index_to_name(rs1index),
+                index_to_name(rs2index)
+            ),
+            Instruction::AMOMINUW(rdindex, rs1index, rs2index) => format!(
+                "amominuw {:}, {:}, {:}",
+                index_to_name(rdindex),
+                index_to_name(rs1index),
+                index_to_name(rs2index)
+            ),
+            Instruction::AMOMAXUW(rdindex, rs1index, rs2index) => format!(
+                "amomaxuw {:}, {:}, {:}",
+                index_to_name(rdindex),
+                index_to_name(rs1index),
+                index_to_name(rs2index)
+            ),
             Instruction::CADDI4SPN(rdindex, cnzuimmediate) => {
                 format!("C.ADDI4SPN {:}, {:}", index_to_name(rdindex), cnzuimmediate)
             }
@@ -729,6 +785,7 @@ impl Instruction {
             Instruction::CFSWSP(rs2index, cluimmediate) => {
                 format!("C.FSWSP {:}, {:}", index_to_name(rs2index), cluimmediate)
             }
+            Instruction::WFI() => "wfi".to_string(),
         }
     }
 }

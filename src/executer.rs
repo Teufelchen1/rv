@@ -94,6 +94,15 @@ pub fn exec(
         Instruction::BNE(rs1index, rs2index, bimmediate) => {
             let rs1: RS1value = register_file.read(rs1index);
             let rs2: RS2value = register_file.read(rs2index);
+            // if instruction_address == 0x20010e92 {
+            //     println!(
+            //         "rs1 {:}, rs2 {:}, imm: {:}, addr: {:}",
+            //         rs1,
+            //         rs2,
+            //         bimmediate,
+            //         add_signed!(instruction_address, bimmediate)
+            //     );
+            // }
             if rs1 != rs2 {
                 assert!(
                     (add_signed!(instruction_address, bimmediate) % 2) == 0,
@@ -312,10 +321,10 @@ pub fn exec(
             register_file.pc = register_file.csr.mepc;
         }
         Instruction::CSRRW(rd_index, rs1, i_imm) => {
-            if rd_index != 0 {
-                register_file.write(rd_index, register_file.csr.read(i_imm));
-                register_file.csr.write(i_imm, register_file.read(rs1));
-            }
+            //if rd_index != 0 { FIX ME TODO ALARM
+            register_file.write(rd_index, register_file.csr.read(i_imm));
+            register_file.csr.write(i_imm, register_file.read(rs1));
+            //}
         }
         Instruction::CSRRS(rd_index, rs1, i_imm) => {
             let csr_value = register_file.csr.read(i_imm);
@@ -454,7 +463,6 @@ pub fn exec(
             register_file.write(rdindex, data);
             let result = data & org;
             memory.write_word(addr_rs1 as usize, result);
-
         }
         Instruction::AMOORW(rdindex, rs1index, rs2index) => {
             let addr_rs1: RS1value = register_file.read(rs1index);
@@ -475,6 +483,10 @@ pub fn exec(
         }
         Instruction::AMOMAXUW(rdindex, rs1index, rs2index) => {
             todo!()
+        }
+        Instruction::WFI() => {
+            //todo!("wfi")
+            register_file.pc -= 4;
         }
         _ => todo!("{:?}", actual_instruction),
     }

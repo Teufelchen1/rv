@@ -32,6 +32,8 @@ use cpu::CPU;
 
 mod utils;
 
+use std::process::Command;
+
 #[derive(Parser, Debug)]
 struct Args {
     /// If set, no TUI is started.
@@ -110,11 +112,58 @@ fn main() {
 
     let mut count = 0;
     loop {
-        println!("{:0>10}| {:0>10X}", count, cpu.register.pc);
-        if cpu.register.pc >= 0x20010C0A && cpu.register.pc <= 0x20010C1A {
-            println!("{:0>8X}, 12({:0>8X})", cpu.register.read(0x0B), cpu.register.read(0x0A));
-            println!("{:0>8X}, 14({:0>8X})", cpu.register.read(0x0C), cpu.register.read(0x0A));
+        // println!(
+        //     "{:0>8}| 0x{:0>9x} | {: <15} | {:?}",
+        //     count,
+        //     cpu.register.pc,
+        //     cpu.current_instruction().unwrap().1.print(),
+        //     String::from_utf8_lossy(
+        //         &Command::new("sh")
+        //             .arg("-c")
+        //             .arg(format!(
+        //                 "riscv32-unknown-elf-addr2line -e hello-world.elf {:x}",
+        //                 cpu.register.pc
+        //             ))
+        //             .output()
+        //             .expect("failed to execute process")
+        //             .stdout[29..]
+        //     )
+        // );
+        // if cpu.register.pc == 0x20011026 {
+        //     println!("-----------");
+        //     println!(
+        //         "{:0>8X}, 100({:0>8X})",
+        //         cpu.register.read(10),
+        //         cpu.register.read(15)
+        //     );
+        // }
+        //println!("{:0>10}| {:0>10X}", count, cpu.register.pc);
+        if cpu.register.pc >= 20011026 && cpu.register.pc <= 20011026 {
+            // println!(
+            //     "{:0>8}| 0x{:0>9x} | {:?}",
+            //     count,
+            //     cpu.register.pc,
+            //     cpu.current_instruction().unwrap().1
+            // );
+            //println!("We are here!: a2 {:?}", cpu.register.read(12));
+            //println!("{:?}", cpu.current_instruction().unwrap().1);
+            // println!(
+            //     "{:?}",
+            //     instructions::decompress(&cpu.current_instruction().unwrap().1)
+            // );
         }
+        // if cpu.register.pc >= 0x20010C0A && cpu.register.pc <= 0x20010C1A {
+        //     println!(
+        //         "{:0>8X}, 12({:0>8X})",
+        //         cpu.register.read(0x0B),
+        //         cpu.register.read(0x0A)
+        //     );
+        //     println!(
+        //         "{:0>8X}, 14({:0>8X})",
+        //         cpu.register.read(0x0C),
+        //         cpu.register.read(0x0A)
+        //     );
+        // }
         let ok = match cpu.step() {
             Ok(ok) => ok,
             Err(err) => panic!(
