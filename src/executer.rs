@@ -1,4 +1,6 @@
 //! This file is scoped to a single function: `exec()`.
+use std::cmp::{max, min};
+
 use crate::decoder::{RS1value, RS2value};
 use crate::instructions::{decompress, Instruction};
 use crate::memory::Memory;
@@ -448,13 +450,28 @@ pub fn exec(
             todo!()
         }
         Instruction::AMOSWAPW(rdindex, rs1index, rs2index) => {
-            todo!()
+            let addr_rs1: RS1value = register_file.read(rs1index);
+            let org: RS2value = register_file.read(rs2index);
+            let data = memory.read_word(addr_rs1 as usize);
+            register_file.write(rdindex, data);
+            let result = org;
+            memory.write_word(addr_rs1 as usize, result);
         }
         Instruction::AMOADDW(rdindex, rs1index, rs2index) => {
-            todo!()
+            let addr_rs1: RS1value = register_file.read(rs1index);
+            let org: RS2value = register_file.read(rs2index);
+            let data = memory.read_word(addr_rs1 as usize);
+            register_file.write(rdindex, data);
+            let result = data + org;
+            memory.write_word(addr_rs1 as usize, result);
         }
         Instruction::AMOXORW(rdindex, rs1index, rs2index) => {
-            todo!()
+            let addr_rs1: RS1value = register_file.read(rs1index);
+            let org: RS2value = register_file.read(rs2index);
+            let data = memory.read_word(addr_rs1 as usize);
+            register_file.write(rdindex, data);
+            let result = data ^ org;
+            memory.write_word(addr_rs1 as usize, result);
         }
         Instruction::AMOANDW(rdindex, rs1index, rs2index) => {
             let addr_rs1: RS1value = register_file.read(rs1index);
@@ -473,16 +490,36 @@ pub fn exec(
             memory.write_word(addr_rs1 as usize, result);
         }
         Instruction::AMOMINW(rdindex, rs1index, rs2index) => {
-            todo!()
+            let addr_rs1: RS1value = register_file.read(rs1index);
+            let org: RS2value = register_file.read(rs2index);
+            let data = memory.read_word(addr_rs1 as usize);
+            register_file.write(rdindex, data);
+            let result = min(data, org);
+            memory.write_word(addr_rs1 as usize, result);
         }
         Instruction::AMOMAXW(rdindex, rs1index, rs2index) => {
-            todo!()
+            let addr_rs1: RS1value = register_file.read(rs1index);
+            let org: RS2value = register_file.read(rs2index);
+            let data = memory.read_word(addr_rs1 as usize);
+            register_file.write(rdindex, data);
+            let result = max(data, org);
+            memory.write_word(addr_rs1 as usize, result);
         }
         Instruction::AMOMINUW(rdindex, rs1index, rs2index) => {
-            todo!()
+            let addr_rs1: RS1value = register_file.read(rs1index);
+            let org: RS2value = register_file.read(rs2index);
+            let data = memory.read_word(addr_rs1 as usize);
+            register_file.write(rdindex, data);
+            let result = min(data, org);
+            memory.write_word(addr_rs1 as usize, result);
         }
         Instruction::AMOMAXUW(rdindex, rs1index, rs2index) => {
-            todo!()
+            let addr_rs1: RS1value = register_file.read(rs1index);
+            let org: RS2value = register_file.read(rs2index);
+            let data = memory.read_word(addr_rs1 as usize);
+            register_file.write(rdindex, data);
+            let result = max(data, org);
+            memory.write_word(addr_rs1 as usize, result);
         }
         Instruction::WFI() => {
             //todo!("wfi")
