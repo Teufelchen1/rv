@@ -462,8 +462,8 @@ pub fn exec(
             let org: RS2value = register_file.read(rs2index);
             let data = memory.read_word(addr_rs1 as usize);
             register_file.write(rdindex, data);
-            let result = add_signed!(data, org);
-            memory.write_word(addr_rs1 as usize, result);
+            let result =(data as i32).wrapping_add(org as i32);
+            memory.write_word(addr_rs1 as usize, result as u32);
         }
         Instruction::AMOXORW(rdindex, rs1index, rs2index) => {
             let addr_rs1: RS1value = register_file.read(rs1index);
