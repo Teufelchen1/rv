@@ -462,7 +462,7 @@ pub fn exec(
             let org: RS2value = register_file.read(rs2index);
             let data = memory.read_word(addr_rs1 as usize);
             register_file.write(rdindex, data);
-            let result = data + org;
+            let result = add_signed!(data, org);
             memory.write_word(addr_rs1 as usize, result);
         }
         Instruction::AMOXORW(rdindex, rs1index, rs2index) => {
@@ -494,7 +494,7 @@ pub fn exec(
             let org: RS2value = register_file.read(rs2index);
             let data = memory.read_word(addr_rs1 as usize);
             register_file.write(rdindex, data);
-            let result = min(data, org);
+            let result = min(data as i32, org as i32) as u32;
             memory.write_word(addr_rs1 as usize, result);
         }
         Instruction::AMOMAXW(rdindex, rs1index, rs2index) => {
@@ -502,7 +502,7 @@ pub fn exec(
             let org: RS2value = register_file.read(rs2index);
             let data = memory.read_word(addr_rs1 as usize);
             register_file.write(rdindex, data);
-            let result = max(data, org);
+            let result = max(data as i32, org as i32) as u32;
             memory.write_word(addr_rs1 as usize, result);
         }
         Instruction::AMOMINUW(rdindex, rs1index, rs2index) => {
